@@ -26,7 +26,7 @@ function parseData(data) {
         console.error("No items found at selector: ", trackSelector)
     }
 
-    let returnObject = []
+    const returnObject = []
 
     tracks.each((_, el) => {
         let infoObject = {}
@@ -53,7 +53,6 @@ function parseData(data) {
         infoObject['trackRemixers'] = trackRemixers
 
         returnObject.push(infoObject)
-
     })
     return returnObject
 }
@@ -63,5 +62,3 @@ const url = "https://www.beatport.com/chart/best-new-deep-house-february/550399"
 scrapeChartFromURL(url).then(parsedData => {
     console.info('parsedData', parsedData)
 })
-
-
