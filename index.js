@@ -17,7 +17,7 @@ async function makeNetworkRequest(url) {
 }
 
 function parseData(data) {
-    const $ = cheerio.load(data);
+    const $ = cheerio.load(data)
 
     const tracks = $(trackSelector)
     console.info("Found", tracks.length, "tracks")
