@@ -28,7 +28,7 @@ function parseData(data) {
 
     let returnObject = []
 
-    tracks.each(async (_, el) => {
+    tracks.each((_, el) => {
         let infoObject = {}
 
         const trackTitle = $(el).find(trackTitleSelector).text().trim()
