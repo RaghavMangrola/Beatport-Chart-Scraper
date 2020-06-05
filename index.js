@@ -9,12 +9,7 @@ const trackRemixersSelector = '.buk-track-remixers'
 
 async function scrapeChartFromURL(url) {
     const response = await makeNetworkRequest(url)
-
-    const parsedDataPromise = new Promise(resolve => {
-        resolve(parseData(response.data))
-    }) 
-    
-    return parsedDataPromise
+    return parseData(response.data)
 }
 
 async function makeNetworkRequest(url) {
