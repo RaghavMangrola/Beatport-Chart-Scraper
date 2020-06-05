@@ -13,12 +13,7 @@ async function scrapeChartFromURL(url) {
 }
 
 async function makeNetworkRequest(url) {
-    return axios.get(url)
-        .then(response => {
-            return response
-        }).catch(error => {
-            console.error('error', error)
-        })
+    return await axios.get(url)
 }
 
 function parseData(data) {
