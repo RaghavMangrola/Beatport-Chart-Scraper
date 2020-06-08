@@ -61,4 +61,4 @@ const url = "https://www.beatport.com/chart/best-new-deep-house-february/550399"
 
 scrapeChartFromURL(url).then(parsedData => {
     console.info('parsedData', parsedData)
-})
+}).catch(error => console.log('something went wrong in scrapeChartFromURL!', error))
