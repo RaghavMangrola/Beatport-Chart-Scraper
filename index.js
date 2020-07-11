@@ -9,25 +9,15 @@ const trackRemixersSelector = '.buk-track-remixers'
 
 async function scrapeChartFromURL(url) {
     const response = await makeNetworkRequest(url)
-
-    const parsedDataPromise = new Promise(resolve => {
-        resolve(parseData(response.data))
-    }) 
-    
-    return parsedDataPromise
+    return parseData(response.data)
 }
 
 async function makeNetworkRequest(url) {
-    return axios.get(url)
-        .then(response => {
-            return response
-        }).catch(error => {
-            console.error('error', error)
-        })
+    return await axios.get(url)
 }
 
 function parseData(data) {
-    const $ = cheerio.load(data);
+    const $ = cheerio.load(data)
 
     const tracks = $(trackSelector)
     console.info("Found", tracks.length, "tracks")
@@ -36,9 +26,9 @@ function parseData(data) {
         console.error("No items found at selector: ", trackSelector)
     }
 
-    let returnObject = []
+    const returnObject = []
 
-    tracks.each(async (_, el) => {
+    tracks.each((_, el) => {
         let infoObject = {}
 
         const trackTitle = $(el).find(trackTitleSelector).text().trim()
@@ -63,7 +53,6 @@ function parseData(data) {
         infoObject['trackRemixers'] = trackRemixers
 
         returnObject.push(infoObject)
-
     })
     return returnObject
 }
@@ -72,6 +61,4 @@ const url = "https://www.beatport.com/chart/best-new-deep-house-february/550399"
 
 scrapeChartFromURL(url).then(parsedData => {
     console.info('parsedData', parsedData)
-})
-
-
+}).catch(error => console.log('something went wrong in scrapeChartFromURL!', error))
